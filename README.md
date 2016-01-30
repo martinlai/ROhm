@@ -1,2 +1,2 @@
-# ROhm
-Quickly convert resistor colour codes to resistor values
+# ResOhm
+Convert resistor colour codes to resistor values
