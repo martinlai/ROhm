@@ -19,19 +19,19 @@ public class Resistance {
 			//Console.WriteLine( "color: {0, 6}" + " Figure: {1, 2}", color[j], significantFigures[j] );
 		}
 		
+		
 		Console.WriteLine("Please enter the left most color band: ");
 		string color1 = Console.ReadLine();
 		Console.WriteLine("Please enter the second color band: ");
 		string color2 = Console.ReadLine();
-		
+		try {
 		int x = (int) Resistors[color1] ;
 		int y = (int) Resistors[color2] ;
-		if(Resistors.ContainsKey(color1) && Resistors.ContainsKey(color2)){
+		
 			resistorValue = significantFigures[x] * Math.Pow(10, significantFigures[y]);
 	         Console.WriteLine("The resistance is {0}", resistorValue);
 		}
-		else {
-			
+		catch(Exception e) {
 			Console.WriteLine("Sorry, you entries are not valid");
 		}
 	}
