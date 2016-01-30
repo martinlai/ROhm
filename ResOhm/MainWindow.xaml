@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:ResOhm"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid Margin="10,0,-10,-21">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="515*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
         
+      
+        <Button x:Name="button" Content="Confirm" Margin="212,97,228,180" Click="button_Click"/>
+        <CheckBox x:Name="checkbox" Content="3 Bands" HorizontalAlignment="Left" Margin="79,180,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkbox1" Content="4 Bands" HorizontalAlignment="Left" Margin="168,180,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox2" Content="5 Bnads" HorizontalAlignment="Left" Margin="256,183,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox" Content="6 Bands" HorizontalAlignment="Left" Margin="350,183,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
