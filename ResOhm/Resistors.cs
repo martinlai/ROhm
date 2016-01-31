@@ -3,17 +3,12 @@ using System.Collections.Generic;
 
 public abstract class Resistor
 {
-    protected string band1;
-    protected string band2;
-    protected string multiplier;
-    protected double resistorValue;
-	protected string[] color = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White"};
-	protected int[] significantFigures = new int[10];
-	protected int index1;
-	protected int index2;
-	protected int index3;
+    private string band1;
+    private string band2;
+    private string multiplier;
+    private double resistorValue;
+
 	
-	protected Resistor(){}
     // Minimum number of bands is 3; constructor forces minimum of these values to be passed to it
     protected Resistor(string band1, string band2, string multiplier)
     {
@@ -31,28 +26,6 @@ public abstract class Resistor
 
     public double Resistance() 
     { 
-	    Dictionary<string, double> Resistors = new Dictionary<string, double>();
-		
-		for(int i = 0; i < significantFigures.Length; i ++) {
-			significantFigures[i] = i;
-		}
-		
-		for(int j = 0; j < significantFigures.Length; j ++) {
-			Resistors.Add(color[j],significantFigures[j]);
-		}
-		
-		try {
-			index1 = (int) Resistors[band1] ;
-			index2 = (int) Resistors[band2] ;
-			index3 = (int) Resistors[multiplier] ;
-		
-			resistorValue = CalculateResistance();
-			//Console.WriteLine("The resistance is {0}", resistorValue);
-		}
-		catch(Exception e) {
-			//Console.WriteLine("Sorry, you entries are not valid");
-		}
-	
             return resistorValue;   
     }
 	
@@ -65,6 +38,40 @@ public class ThreeBandResistor : Resistor {
     }
 	
 
+	
+}
+//Store code to be moved to interface with GUI
+public class Temp
+{
+    protected string[] color = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White" };
+    protected int[] significantFigures = new int[10];
+    protected int index1;
+    protected int index2;
+    protected int index3;
+
+    Dictionary<string, double> Resistors = new Dictionary<string, double>();
+		
+        // We can just hard code values, no need to create new array to do this
+		for(int i = 0; i<significantFigures.Length; i ++) {
+			significantFigures[i] = i;
+		}
+		
+		for(int j = 0; j<significantFigures.Length; j ++) {
+			Resistors.Add(color[j],significantFigures[j]);
+		}
+		
+    //GUI will take care of error checking (in fact, if we put in a dropdown list or radio button then the user cannot possibly pass in incorrect values
+		try {
+			index1 = (int) Resistors[band1] ;
+			index2 = (int) Resistors[band2] ;
+			index3 = (int) Resistors[multiplier] ;
+		
+			resistorValue = CalculateResistance();
+			//Console.WriteLine("The resistance is {0}", resistorValue);
+		}
+		catch(Exception e) {
+			//Console.WriteLine("Sorry, you entries are not valid");
+		}
 	
 }
 
