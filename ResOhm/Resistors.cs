@@ -3,33 +3,95 @@ using System.Collections.Generic;
 
 public abstract class Resistor
 {
-    private double band1;
-    private double band2;
-    private double multiplier;
-    private double resistorValue;
+    protected string band1;
+    protected string band2;
+    protected string multiplier;
+    protected double resistorValue;
+	protected string[] color = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White"};
+	protected int[] significantFigures = new int[10];
+	protected int index1;
+	protected int index2;
+	protected int index3;
+	
+	protected Resistor(){}
     // Minimum number of bands is 3; constructor forces minimum of these values to be passed to it
-    protected Resistor(double band1, double band2, double multiplier)
+    protected Resistor(string band1, string band2, string multiplier)
     {
         this.band1 = band1;
         this.band2 = band2;
         this.multiplier = multiplier;
         resistorValue = CalculateResistance();
     }
+	
     //Can override virtual method when we have more than 3 bands 
     public virtual double CalculateResistance()
     {
-        return ((band1 + 10 * band2) * multiplier);
+       return ( 10*significantFigures[index1] +　significantFigures[index2]　)* Math.Pow(10, significantFigures[index3] );
     }
 
     public double Resistance() 
-    {
+    { 
+	    Dictionary<string, double> Resistors = new Dictionary<string, double>();
+		
+		for(int i = 0; i < significantFigures.Length; i ++) {
+			significantFigures[i] = i;
+		}
+		
+		for(int j = 0; j < significantFigures.Length; j ++) {
+			Resistors.Add(color[j],significantFigures[j]);
+		}
+		
+		try {
+			index1 = (int) Resistors[band1] ;
+			index2 = (int) Resistors[band2] ;
+			index3 = (int) Resistors[multiplier] ;
+		
+			resistorValue = CalculateResistance();
+			//Console.WriteLine("The resistance is {0}", resistorValue);
+		}
+		catch(Exception e) {
+			//Console.WriteLine("Sorry, you entries are not valid");
+		}
+	
             return resistorValue;   
     }
-  
-
+	
 }
 
-public class Resistance {
+public class ThreeBandResistor : Resistor {
+	private ThreeBandResistor(string band1, string band2, string multiplier) : base(band1, band2, multiplier)
+    {
+
+    }
+	
+
+	
+}
+
+public class Demo{
+	static void Main(){
+	double resistance;
+	
+	Console.WriteLine("Please enter the color of first value band: ");
+	string band1 = Console.ReadLine();
+	
+	Console.WriteLine("Please enter the color of second value band: ");
+	string band2 = Console.ReadLine();
+	
+	Console.WriteLine("Please enter the color of multiplier band: ");
+	string multiplier = Console.ReadLine();
+	
+		ThreeBandResistor a = new ThreeBandResistor(band1, band2, multiplier);	
+	
+	resistance = a.Resistance();
+	
+	Console.WriteLine("Resistance: {0} ohms", resistance);
+		
+	}
+	
+}
+
+/*public class Resistance {
 	public static void Main() {
 		
 		Dictionary<string, double> Resistors = new Dictionary<string, double>();
@@ -63,4 +125,4 @@ public class Resistance {
 			Console.WriteLine("Sorry, you entries are not valid");
 		}
 	}
-}
+} */
