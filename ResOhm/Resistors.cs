@@ -10,7 +10,7 @@ public abstract class Resistor
     //Pass in dictionary containing values of resistor bands based on colour
     public virtual void CalculateValues(Dictionary<string, double> Band)
     {
-        resistance = (Band["one"] + 10*Band["two"])*Math.Pow(10, Band["multiplier"]);
+        resistance = ( 10 * Band["one"] + Band["two"] ) * Math.Pow(10, Band["multiplier"]);
     }
 
     public double Resistance{ get { return resistance;  }    }
@@ -28,7 +28,7 @@ class FourBandResistor : Resistor
     internal FourBandResistor() {}
     public override void CalculateValues(Dictionary<string, double> Band)
     {
-        resistance = (Band["one"] + 10*Band["two"] + 100*Band["three"])*Math.Pow(10, Band["multiplier"]);
+        resistance = ( 10 * Band["three"] + Band["four"]) * Math.Pow(10, Band["multiplier"]);
         tolerance = Band["tolerance"];
     }
 
@@ -41,7 +41,7 @@ class FiveBandResistor : Resistor
     internal FiveBandResistor() {}
     public override void CalculateValues(Dictionary<string, double> Band)
     {
-        resistance = (Band["one"] + 10 * Band["two"] + 100 * Band["three"] * 1000 * Band["four"]) * Math.Pow(10, Band["multiplier"]);
+        resistance = ( 100 * Band["one"] + 10 * Band["two"] + Band["three"] ) * Math.Pow(10, Band["multiplier"]);
         tolerance = Band["tolerance"];
     }
     public double Tolerance { get { return tolerance; } }
@@ -52,8 +52,9 @@ class SixBandResistor : Resistor
     internal SixBandResistor() {}
     public override void CalculateValues(Dictionary<string, double> Band)
     {
-        resistance = (Band["one"] + 10 * Band["two"] + 100 * Band["three"] * 1000 * Band["four"]) * Math.Pow(10, Band["multiplier"]);
+        resistance = ( 100 * Band["one"] + 10 * Band["two"] + Band["three"] ) * Math.Pow(10, Band["multiplier"]);
         tolerance = Band["tolerance"];
+		tempCo = Band["tempco"];
     }
     public double Tolerance { get { return tolerance; } }
     public double TempCoefficient { get { return tempCo; } }
