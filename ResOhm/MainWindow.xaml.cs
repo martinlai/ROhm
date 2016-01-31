@@ -43,12 +43,38 @@ namespace ResOhm
           
          
         }
-   
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
-            string numOfBands = ((ComboBoxItem)NumOfBands.SelectedItem).Content.ToString();
+         
+            
+
+            int numOfBands = Convert.ToInt32(((ComboBoxItem)NumOfBands.SelectedItem).Content);
+            int BandNumber = 0;
+            double[] Bands = new double[numOfBands];
+      
+
+            foreach (ComboBox child in ResistorBands.Children)
+            {
+                
+                if(child.Visibility == Visibility.Visible)
+                {
+                    Bands[BandNumber] = Convert.ToDouble(child.SelectedValue);
+                }
+                BandNumber++;
+            }
+  
+            ResistorFactory rf = new ResistorFactory();
+            Resistor resistor = rf.CreateResistor(numOfBands);
+            resistor.CalculateValues(Bands);
+            double test = resistor.Resistance;
+        
+
+            
+
+
         }
+
 
         private void NumOfBands_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -79,5 +105,8 @@ namespace ResOhm
             }
        
         }
+
+
+     
     }
 }

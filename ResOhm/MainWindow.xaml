@@ -13,9 +13,9 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="26,15,16.2,262" Orientation="Vertical">
-            <TextBox BorderThickness="0" Text="Please select the number of bands your resistor has:" Margin="0,0,-0.2,0" Height="17"/>
-            <ComboBox x:Name ="NumOfBands" RenderTransformOrigin="0.5,0.5" Margin="12,0,0.8,0" Height="19"  SelectionChanged="NumOfBands_SelectionChanged" >
+        <StackPanel Margin="24,15,16.2,262" Orientation="Vertical">
+            <TextBox BorderThickness="0" Text="Please select the number of bands your resistor has:" Margin="12,0,-0.2,0" Height="16"/>
+            <ComboBox x:Name ="NumOfBands" RenderTransformOrigin="0.5,0.5" Margin="12,0,1.2,0" Height="19"  SelectionChanged="NumOfBands_SelectionChanged" >
                 <ComboBoxItem Content="3"/>
                 <ComboBoxItem Content="4"/>
                 <ComboBoxItem Content="5"/>
@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="19*"/>
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
-            <WrapPanel x:Name="ThreeBands" Grid.ColumnSpan="5" Margin="28,34,-330.2,-36.2" Orientation="Horizontal">
+            <WrapPanel x:Name="ResistorBands" Grid.ColumnSpan="5" Margin="28,34,-330.2,-36.2" Orientation="Horizontal">
                 <ComboBox x:Name="Band1"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
@@ -72,7 +72,7 @@
         </Grid>
 
 
-        <Button x:Name="button" Content="Confirm" HorizontalAlignment="Center" Margin="212,285,228,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="ConvertButton" Content="Confirm" HorizontalAlignment="Center" Margin="241,325,268.2,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.937,3.573" Height="26" Click="ConvertButton_Click" />
 
 
 

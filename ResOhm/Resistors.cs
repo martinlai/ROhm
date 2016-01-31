@@ -8,9 +8,9 @@ public abstract class Resistor
     protected double tempCo;
 
     //Pass in dictionary containing values of resistor bands based on colour
-    public virtual void CalculateValues(Dictionary<string, double> Band)
+    public virtual void CalculateValues(double[] Bands)
     {
-        resistance = (Band["one"] + 10*Band["two"])*Math.Pow(10, Band["multiplier"]);
+        resistance = (10*Bands[0] + Bands[1])*Math.Pow(10, Bands[2]);
     }
 
     public double Resistance{ get { return resistance;  }    }
@@ -26,10 +26,10 @@ class ThreeBandResistor : Resistor
 class FourBandResistor : Resistor
 {
     internal FourBandResistor() {}
-    public override void CalculateValues(Dictionary<string, double> Band)
+    public override void CalculateValues(double[] Bands)
     {
-        resistance = (Band["one"] + 10*Band["two"] + 100*Band["three"])*Math.Pow(10, Band["multiplier"]);
-        tolerance = Band["tolerance"];
+        resistance = (10*Bands[0] + Bands[1])*Math.Pow(10, Bands[2]);
+        tolerance = Bands[3];
     }
 
     public double Tolerance   { get { return tolerance; } }
@@ -39,10 +39,10 @@ class FourBandResistor : Resistor
 class FiveBandResistor : Resistor
 {
     internal FiveBandResistor() {}
-    public override void CalculateValues(Dictionary<string, double> Band)
+    public override void CalculateValues(double[] Bands)
     {
-        resistance = (Band["one"] + 10 * Band["two"] + 100 * Band["three"] * 1000 * Band["four"]) * Math.Pow(10, Band["multiplier"]);
-        tolerance = Band["tolerance"];
+        resistance = (100*Bands[0] + 10 * Bands[1] + Bands[2]) * Math.Pow(10, Bands[3]);
+        tolerance = Bands[4];
     }
     public double Tolerance { get { return tolerance; } }
 }
@@ -50,10 +50,11 @@ class FiveBandResistor : Resistor
 class SixBandResistor : Resistor
 {
     internal SixBandResistor() {}
-    public override void CalculateValues(Dictionary<string, double> Band)
+    public override void CalculateValues(double[] Bands)
     {
-        resistance = (Band["one"] + 10 * Band["two"] + 100 * Band["three"] * 1000 * Band["four"]) * Math.Pow(10, Band["multiplier"]);
-        tolerance = Band["tolerance"];
+        resistance = (100 * Bands[0] + 10 * Bands[1] + Bands[2]) * Math.Pow(10, Bands[3]);
+        tolerance = Bands[4];
+        tempCo = Bands[5];
     }
     public double Tolerance { get { return tolerance; } }
     public double TempCoefficient { get { return tempCo; } }
