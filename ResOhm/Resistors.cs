@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 public abstract class Resistor 
 {
+    // Define fields
     protected double resistance;
     protected string resultString;
     protected double tolerance;
