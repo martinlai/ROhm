@@ -81,23 +81,35 @@ namespace ResOhm
             switch (numOfBands)
             {
                 case "4":
+                    vBand4.Visibility = Visibility.Visible;
                     Band4.Visibility = Visibility.Visible;
+                    vBand5.Visibility = Visibility.Hidden;
                     Band5.Visibility = Visibility.Hidden;
+                    vBand6.Visibility = Visibility.Hidden;
                     Band6.Visibility = Visibility.Hidden;
                     break;
                 case "5":
+                    vBand4.Visibility = Visibility.Visible;
                     Band4.Visibility = Visibility.Visible;
+                    vBand5.Visibility = Visibility.Visible;
                     Band5.Visibility = Visibility.Visible;
+                    vBand6.Visibility = Visibility.Hidden;
                     Band6.Visibility = Visibility.Hidden;
                     break;
                 case "6":
+                    vBand4.Visibility = Visibility.Visible;
                     Band4.Visibility = Visibility.Visible;
+                    vBand5.Visibility = Visibility.Visible;
                     Band5.Visibility = Visibility.Visible;
+                    vBand6.Visibility = Visibility.Visible;
                     Band6.Visibility = Visibility.Visible;
                     break;
                 default:
+                    vBand4.Visibility = Visibility.Hidden;
                     Band4.Visibility = Visibility.Hidden;
+                    vBand5.Visibility = Visibility.Hidden;
                     Band5.Visibility = Visibility.Hidden;
+                    vBand6.Visibility = Visibility.Hidden;
                     Band6.Visibility = Visibility.Hidden;
                     break;
             }
