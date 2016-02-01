@@ -46,29 +46,36 @@ namespace ResOhm
 
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
-         
-            
-            int numOfBands = Convert.ToInt32(((ComboBoxItem)NumOfBands.SelectedItem).Content);
-            int BandNumber = 0;
-            double[] Bands = new double[numOfBands];
-      
 
-            foreach (ComboBox child in ResistorBands.Children)
+            if (NumOfBands.SelectedItem == null)
             {
-                
-                if(child.Visibility == Visibility.Visible)
-                {
-                    Bands[BandNumber] = Convert.ToDouble(child.SelectedValue);
-                }
-                BandNumber++;
+                ResistorFactory rf = new ResistorFactory();
+                Resistor resistor = rf.CreateResistor(3);
+                ResultBox1.DataContext = resistor;
             }
-  
-            ResistorFactory rf = new ResistorFactory();
-            Resistor resistor = rf.CreateResistor(numOfBands);
-            resistor.CalculateValues(Bands);
-            ResultBox.DataContext = resistor;
+            else {
+                int numOfBands = Convert.ToInt32(((ComboBoxItem)NumOfBands.SelectedItem).Content);
 
-            
+                int BandNumber = 0;
+                double[] Bands = new double[numOfBands];
+
+
+                foreach (ComboBox child in ResistorBands.Children)
+                {
+
+                    if (child.Visibility == Visibility.Visible)
+                    {
+                        Bands[BandNumber] = Convert.ToDouble(child.SelectedValue);
+                    }
+                    BandNumber++;
+                }
+
+                ResistorFactory rf = new ResistorFactory();
+                Resistor resistor = rf.CreateResistor(numOfBands);
+                resistor.CalculateValues(Bands);
+                ResultBox.DataContext = resistor;
+
+             }
 
 
         }
