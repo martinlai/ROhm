@@ -8,7 +8,6 @@ public abstract class Resistor
     protected string resultString;
     protected double tolerance;
     protected double tempCo;
-    protected string msg = "Please choose a valid band numbers in the dropdown menu";
 
     //Pass in dictionary containing values of resistor bands based on colour
     public virtual void CalculateValues(double[] Bands)
@@ -21,7 +20,7 @@ public abstract class Resistor
     }
 
     public string ResistorValues{ get { return resultString;  }    }
-    public string Msg { get { return msg; } }
+
 }
 
 class ThreeBandResistor : Resistor

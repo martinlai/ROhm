@@ -26,7 +26,7 @@ namespace ResOhm
         public MainWindow()
         {
             InitializeComponent();
-           
+            ResultBoxError.Visibility = Visibility.Hidden;
             string[] colours = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Grey", "White" };
          
             for (int i = 0; i < colours.Length; i++)
@@ -47,13 +47,10 @@ namespace ResOhm
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if (NumOfBands.SelectedItem == null)
-            {
-                ResistorFactory rf = new ResistorFactory();
-                Resistor resistor = rf.CreateResistor(3);
-                ResultBox1.DataContext = resistor;
-            }
-            else {
+            if(NumOfBands.SelectedItem != null) {
+
+                ResultBox.Visibility = Visibility.Visible;
+                ResultBoxError.Visibility = Visibility.Hidden;
                 int numOfBands = Convert.ToInt32(((ComboBoxItem)NumOfBands.SelectedItem).Content);
 
                 int BandNumber = 0;
@@ -75,7 +72,12 @@ namespace ResOhm
                 resistor.CalculateValues(Bands);
                 ResultBox.DataContext = resistor;
 
-             }
+            }
+            else
+            {
+                ResultBoxError.Visibility = Visibility.Visible;
+                ResultBox.Visibility = Visibility.Hidden;
+            }
 
 
         }
@@ -83,6 +85,7 @@ namespace ResOhm
 
         private void NumOfBands_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ResultBoxError.Visibility = Visibility.Hidden;
             string numOfBands = ((ComboBoxItem)NumOfBands.SelectedItem).Content.ToString();
 
             switch (numOfBands)

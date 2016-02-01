@@ -84,7 +84,7 @@
         <Button x:Name="ConvertButton" Content="Decode" Background="Linen"  HorizontalAlignment="Left" Margin="212.2,396,0,0"  FontWeight="DemiBold"  FontFamily="Copperplate Gothic" BorderBrush="Tomato"  BorderThickness="2.5" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.937,3.573" Height="34" Click="ConvertButton_Click" Grid.Column="1" />
         <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="24.2,253,-1,208.6" Text="Resistor values:" Grid.Column="1" Grid.ColumnSpan="4"/>
         <TextBox x:Name="ResultBox" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="{Binding Path=ResistorValues, Mode=OneWay}" FontFamily="Copperplate Gothic Light" Margin="24.2,279,15.6,109.6" Grid.Column="1"/>
-        <TextBox x:Name="ResultBox1" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="{Binding Path=Msg, Mode=OneWay}" FontFamily="Copperplate Gothic Light" Margin="24,279,15,109.2" Grid.Column="1"/>
+        <TextBox x:Name="ResultBoxError" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="Please first select the number of bands." FontFamily="Copperplate Gothic Light" Margin="24,279,15,109.2" Grid.Column="1"/>
 
     </Grid>
 </Window>
