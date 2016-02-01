@@ -19,8 +19,11 @@ namespace ResOhm
 
     public partial class MainWindow : Window
     {
+        // Two dictionaries to hold resistor colours and their corresponding values
         Dictionary<string, int> resColours = new Dictionary<string, int>();
         Dictionary<string, int> tempColours = new Dictionary<string, int>();
+
+        //Properties for binding ComboBoxers to colours
         public Dictionary<string, int> ResColours { get { return resColours; } }
         public Dictionary<string, int> TempColours { get { return tempColours; } }
         public MainWindow()
@@ -56,7 +59,7 @@ namespace ResOhm
                 int BandNumber = 0;
                 double[] Bands = new double[numOfBands];
 
-
+                // Loop through resistor band colour ComboBoxes and read into array
                 foreach (ComboBox child in ResistorBands.Children)
                 {
 
@@ -104,6 +107,7 @@ namespace ResOhm
 
             switch (numOfBands)
             {
+                // Depending on number of bands, decide the number of dropdown lists to show
                 case "4":
                     vBand4.Visibility = Visibility.Visible;
                     Band4.Visibility = Visibility.Visible;
