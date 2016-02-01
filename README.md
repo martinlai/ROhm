@@ -6,6 +6,6 @@ Convert resistor colour codes to resistor values: Available for 3, 4, 5, 6 colou
 
 Future updates:
 
--Colour binding of displayed resistor bands to user selection
+-Colours of resistor bands displayed update with user selection
 
 -GUI improvements
