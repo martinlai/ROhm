@@ -19,28 +19,28 @@ namespace ResOhm
 
     public partial class MainWindow : Window
     {
-        Dictionary<string, double> resColours = new Dictionary<string, double>();
-        public Dictionary<string, double> ResColours
-        {
-            get
-            {
-                return resColours;
-            }
-        }
-      // Source   http://www.nullskull.com/faq/175/binding-wpf-combobox-items-to-dictionary.aspx
+        Dictionary<string, int> resColours = new Dictionary<string, int>();
+        Dictionary<string, int> tempColours = new Dictionary<string, int>();
+        public Dictionary<string, int> ResColours { get { return resColours; } }
+        public Dictionary<string, int> TempColours { get { return tempColours; } }
         public MainWindow()
         {
             InitializeComponent();
            
             string[] colours = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Grey", "White" };
-
+         
             for (int i = 0; i < colours.Length; i++)
             {
                 resColours.Add(colours[i], i);
             }
 
-       
-          
+            tempColours.Add("Brown", 100);
+            tempColours.Add("Red", 50);
+            tempColours.Add("Orange", 15);
+            tempColours.Add("Yellow", 25);
+            tempColours.Add("Blue", 10);
+            tempColours.Add("Violet", 5);
+           
          
         }
 
@@ -48,7 +48,6 @@ namespace ResOhm
         {
          
             
-
             int numOfBands = Convert.ToInt32(((ComboBoxItem)NumOfBands.SelectedItem).Content);
             int BandNumber = 0;
             double[] Bands = new double[numOfBands];
@@ -67,8 +66,7 @@ namespace ResOhm
             ResistorFactory rf = new ResistorFactory();
             Resistor resistor = rf.CreateResistor(numOfBands);
             resistor.CalculateValues(Bands);
-            double test = resistor.Resistance;
-        
+            ResultBox.DataContext = resistor;
 
             
 
@@ -106,7 +104,6 @@ namespace ResOhm
        
         }
 
-
-     
+  
     }
 }

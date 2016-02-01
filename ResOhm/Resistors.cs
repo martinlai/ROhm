@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
-public abstract class Resistor
+public abstract class Resistor 
 {
     protected double resistance;
+    protected string resultString;
     protected double tolerance;
     protected double tempCo;
 
@@ -11,9 +13,13 @@ public abstract class Resistor
     public virtual void CalculateValues(double[] Bands)
     {
         resistance = (10*Bands[0] + Bands[1])*Math.Pow(10, Bands[2]);
+        resultString = String.Format("Resistance: {0} Ohm ({1} kOhm)", 
+            resistance, 
+            resistance / 1000);
+
     }
 
-    public double Resistance{ get { return resistance;  }    }
+    public string ResistorValues{ get { return resultString;  }    }
 }
 
 class ThreeBandResistor : Resistor
@@ -30,9 +36,10 @@ class FourBandResistor : Resistor
     {
         resistance = (10*Bands[0] + Bands[1])*Math.Pow(10, Bands[2]);
         tolerance = Bands[3];
+        resultString = String.Format("Resistance: {0} Ohm ({1} kOhm) \nTolerance: {2}%", 
+            resistance, 
+            resistance / 1000, tolerance);
     }
-
-    public double Tolerance   { get { return tolerance; } }
 
 }
 
@@ -43,8 +50,11 @@ class FiveBandResistor : Resistor
     {
         resistance = (100*Bands[0] + 10 * Bands[1] + Bands[2]) * Math.Pow(10, Bands[3]);
         tolerance = Bands[4];
+        resultString = String.Format("Resistance: {0} Ohm ({1} kOhm) \nTolerance: {2}%", 
+            resistance, 
+            resistance / 1000, 
+            tolerance);
     }
-    public double Tolerance { get { return tolerance; } }
 }
 
 class SixBandResistor : Resistor
@@ -55,9 +65,13 @@ class SixBandResistor : Resistor
         resistance = (100 * Bands[0] + 10 * Bands[1] + Bands[2]) * Math.Pow(10, Bands[3]);
         tolerance = Bands[4];
         tempCo = Bands[5];
+        resultString = String.Format("Resistance: {0} Ohm ({1} kOhm) \nTolerance: {2}% \nTemperature Coefficent: {3} ppn", 
+            resistance, 
+            resistance / 1000, 
+            tolerance, 
+            tempCo);
     }
-    public double Tolerance { get { return tolerance; } }
-    public double TempCoefficient { get { return tempCo; } }
+
 }
 
 // Enforces resistor creation in resistor factory

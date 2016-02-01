@@ -1,21 +1,29 @@
-﻿<Window x:Class="ResOhm.MainWindow"
+﻿<Window x:Class="ResOhm.MainWindow" Title="ResOhm v1.0 - Resistor Colour Code Decoder"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResOhm"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
-    <Grid Margin="-6,0,5.6,-20.6">
+        BorderBrush="LightSalmon"
+        BorderThickness="3"
+        Background="Bisque"
+        Height="497.6" Width="600">
+    <Grid Margin="-6,0,5.2,-20.2">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="515*"/>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="571*"/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="24,15,16.2,262" Orientation="Vertical">
-            <TextBox BorderThickness="0" Text="Please select the number of bands your resistor has:" Margin="12,0,-0.2,0" Height="16"/>
-            <ComboBox x:Name ="NumOfBands" RenderTransformOrigin="0.5,0.5" Margin="12,0,1.2,0" Height="19"  SelectionChanged="NumOfBands_SelectionChanged" >
+        <StackPanel Margin="7.4,15,16,261.4"  Orientation="Vertical" Grid.Column="1">
+            <TextBox BorderThickness="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Text="Select the number of resistor bands:" Margin="12,0,-0.2,0" Height="16"/>
+            <ComboBox x:Name ="NumOfBands" RenderTransformOrigin="0.5,0.5" Margin="12,0,1.2,0" Height="19" SelectionChanged="NumOfBands_SelectionChanged" >
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="LightBlue" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Orange" />
+                </ComboBox.Resources>
                 <ComboBoxItem Content="3"/>
                 <ComboBoxItem Content="4"/>
                 <ComboBoxItem Content="5"/>
@@ -23,20 +31,13 @@
             </ComboBox>
             <Image Margin="12,12,11.8,12" x:Name="image1" Stretch="None" Height="60" />
         </StackPanel>
-        <UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" Margin="0,35,10.2,356.4">
+        <UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" Margin="10,65,2.2,326.8" Grid.ColumnSpan="5">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
             </StackPanel>
         </UserControl>
-        <Grid Margin="10,108,360.2,262">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="121*"/>
-                <ColumnDefinition Width="41*"/>
-                <ColumnDefinition Width="39*"/>
-                <ColumnDefinition Width="19*"/>
-                <ColumnDefinition Width="0*"/>
-            </Grid.ColumnDefinitions>
-            <WrapPanel x:Name="ResistorBands" Grid.ColumnSpan="5" Margin="28,34,-330.2,-36.2" Orientation="Horizontal">
+        <Grid Margin="10,108,7.8,260.8" Grid.ColumnSpan="2">
+            <WrapPanel x:Name="ResistorBands" Margin="28,34,0,-33.8" Orientation="Horizontal">
                 <ComboBox x:Name="Band1"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
@@ -63,18 +64,16 @@
     				SelectedValuePath="Value"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
                 <ComboBox x:Name="Band6"
-    				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
+    				ItemsSource="{Binding TempColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
     				SelectedValuePath="Value"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
             </WrapPanel>
-            <TextBox BorderThickness ="0" Grid.ColumnSpan="5" Margin="28,62,-111.2,-61.8">Please select the colour of the bands from left to right</TextBox>
+            <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="28,62,10,10.2">Please indicate the colour of the bands from left to right</TextBox>
         </Grid>
-
-
-        <Button x:Name="ConvertButton" Content="Confirm" HorizontalAlignment="Center" Margin="241,325,268.2,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.937,3.573" Height="26" Click="ConvertButton_Click" />
-
-
+        <Button x:Name="ConvertButton" Content="Decode" Background="Linen"  HorizontalAlignment="Left" Margin="206.2,393,0,0"  FontWeight="DemiBold"  FontFamily="Copperplate Gothic" BorderBrush="Tomato"  BorderThickness="2.5" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.937,3.573" Height="34" Click="ConvertButton_Click" Grid.Column="1" />
+        <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="24.2,253,-1,208.6" Text="Resistor values:" Grid.Column="1" Grid.ColumnSpan="4"/>
+        <TextBox x:Name="ResultBox" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="{Binding Path=ResistorValues, Mode=OneWay}" FontFamily="Copperplate Gothic Light" Margin="24.2,279,15.6,109.6" Grid.Column="1"/>
 
     </Grid>
 </Window>
