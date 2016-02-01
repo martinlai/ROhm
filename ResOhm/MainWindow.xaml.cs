@@ -86,6 +86,7 @@ namespace ResOhm
         private void NumOfBands_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ResultBoxError.Visibility = Visibility.Hidden;
+            ResultBox.Visibility = Visibility.Visible;
             string numOfBands = ((ComboBoxItem)NumOfBands.SelectedItem).Content.ToString();
 
             switch (numOfBands)
