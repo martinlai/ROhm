@@ -1,12 +1,16 @@
 # ResOhm
+
 Convert resistor colour codes to resistor values: Available for 3, 4, 5, 6 colour resistors
 
-[ResOhm v1.0 Download Link](https://github.com/martinlai/ResOhm/raw/master/ResOhm/ResOhm.exe)
+[ResOhm v2.0 Download Link](https://github.com/martinlai/ResOhm/raw/master/ResOhm/ResOhm.exe)
 
-![ResOhm v1.0](/ResOhm/ResOhm.JPG?raw=true)
+![ResOhm v2.0](/ResOhm/ResOhm.JPG?raw=true)
 
-Future updates:
+ResOhm v2.0 release notes:
 
--Colours of resistor bands displayed update with user selection
+--Resistor bands now update with colour according to user selection
 
--GUI improvements
+--Reset button added to clear selection
+
+--Improved status messages and error checking
+
