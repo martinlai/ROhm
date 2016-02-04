@@ -157,7 +157,7 @@ namespace ResOhm
 
             // Clear number of bands for resistor selection
             NumOfBands.SelectedItem = null;
-            ResultBoxStatus.Text = null;
+            ResultBoxStatus.Text = "Please first select the number of bands.";
             ResultBoxStatus.Visibility = Visibility.Visible;
             ResultBox.Visibility = Visibility.Hidden;
         }
