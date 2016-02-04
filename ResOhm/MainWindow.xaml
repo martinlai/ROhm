@@ -33,12 +33,12 @@
                 <TextBox Background="Cornsilk"  IsReadOnly="True" Canvas.Left="142" Canvas.Top="22" Width="211" Height="44"></TextBox>
                 <Rectangle Fill="Silver" Stroke="Silver" Canvas.Left="85" Canvas.Top="42" Height="3" Width="57"/>
                 <Rectangle Fill="Silver" Stroke="Silver" Canvas.Left="354" Canvas.Top="42" Height="3" Width="56"/>
-                <Rectangle x:Name="vBand1" Fill="White" Stroke="Silver" Canvas.Left="160" Canvas.Top="23" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand2" Fill="White" Stroke="Silver" Canvas.Left="178" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand3" Fill="White" Stroke="Silver" Canvas.Left="196" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand4" Fill="White" Stroke="Silver" Canvas.Left="228" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand5" Fill="White" Stroke="Silver" Canvas.Left="294" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand6" Fill="White" Stroke="Silver" Canvas.Left="322" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand1" Fill="{Binding ElementName = Band1, Path = SelectedValue}" Stroke="Silver" Canvas.Left="160" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand2" Fill="{Binding ElementName = Band2, Path = SelectedValue}" Stroke="Silver" Canvas.Left="178" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand3" Fill="{Binding ElementName = Band3, Path = SelectedValue}" Stroke="Silver" Canvas.Left="196" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand4" Fill="{Binding ElementName = Band4, Path = SelectedValue}" Stroke="Silver" Canvas.Left="228" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand5" Fill="{Binding ElementName = Band5, Path = SelectedValue}" Stroke="Silver" Canvas.Left="294" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand6" Fill="{Binding ElementName = Band6, Path = SelectedValue}" Stroke="Silver" Canvas.Left="322" Canvas.Top="22" Height="44" Width="13"/>
             </Canvas>
         </StackPanel>
 
@@ -51,32 +51,32 @@
                 <ComboBox x:Name="Band1"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
-    				SelectedValuePath="Value"  
+    				SelectedValuePath="Key"       
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
                 <ComboBox x:Name="Band2"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
-    				SelectedValuePath="Value"  
+    				SelectedValuePath="Key"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
                 <ComboBox x:Name="Band3"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
-    				SelectedValuePath="Value"  
+    				SelectedValuePath="Key"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
                 <ComboBox x:Name="Band4"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
-    				SelectedValuePath="Value"  
+    				SelectedValuePath="Key"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
                 <ComboBox x:Name="Band5"
     				ItemsSource="{Binding ResColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
-    				SelectedValuePath="Value"  
+    				SelectedValuePath="Key"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
                 <ComboBox x:Name="Band6"
     				ItemsSource="{Binding TempColours, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"  
     				DisplayMemberPath="Key" 
-    				SelectedValuePath="Value"  
+    				SelectedValuePath="Key"  
     				RenderTransformOrigin="0.5,0.5" Height="21" Width="77" />
             </WrapPanel>
             <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="28,62,9.8,9.6" Grid.ColumnSpan="2">Please indicate the colour of the bands from left to right</TextBox>
@@ -84,7 +84,7 @@
         <Button x:Name="ConvertButton" Content="Decode" Background="Linen"  HorizontalAlignment="Left" Margin="212.2,396,0,0"  FontWeight="DemiBold"  FontFamily="Copperplate Gothic" BorderBrush="Tomato"  BorderThickness="2.5" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.937,3.573" Height="34" Click="ConvertButton_Click" Grid.Column="1" />
         <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="24.2,253,-1,208.6" Text="Resistor values:" Grid.Column="1" Grid.ColumnSpan="4"/>
         <TextBox x:Name="ResultBox" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="{Binding Path=ResistorValues, Mode=OneWay}" FontFamily="Copperplate Gothic Light" Margin="24.2,279,15.6,109.6" Grid.Column="1"/>
-        <TextBox x:Name="ResultBoxError" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="Please first select the number of bands." FontFamily="Copperplate Gothic Light" Margin="24,279,15,109.2" Grid.Column="1"/>
+        <TextBox x:Name="ResultBoxError" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="Please first select the number of bands." FontFamily="Copperplate Gothic Light" Margin="24,279,15,109.2" Grid.Column="1" />
 
     </Grid>
 </Window>

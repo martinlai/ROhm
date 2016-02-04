@@ -27,7 +27,7 @@ namespace ResOhm
         {
             InitializeComponent();
             ResultBoxError.Visibility = Visibility.Hidden;
-            string[] colours = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Grey", "White" };
+            string[] colours = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White" };
          
             for (int i = 0; i < colours.Length; i++)
             {
@@ -62,7 +62,7 @@ namespace ResOhm
 
                     if (child.Visibility == Visibility.Visible)
                     {
-                        Bands[BandNumber] = Convert.ToDouble(child.SelectedValue);
+                        Bands[BandNumber] = resColours[Convert.ToString(child.SelectedValue)];        
                     }
                     BandNumber++;
                 }
@@ -127,6 +127,6 @@ namespace ResOhm
        
         }
 
-  
+
     }
 }
