@@ -26,7 +26,7 @@ namespace ResOhm
         public MainWindow()
         {
             InitializeComponent();
-            ResultBoxError.Visibility = Visibility.Hidden;
+            ResultBoxStatus.Visibility = Visibility.Hidden;
             string[] colours = { "Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White" };
          
             for (int i = 0; i < colours.Length; i++)
@@ -50,7 +50,7 @@ namespace ResOhm
             if(NumOfBands.SelectedItem != null) {
 
                 ResultBox.Visibility = Visibility.Visible;
-                ResultBoxError.Visibility = Visibility.Hidden;
+                ResultBoxStatus.Visibility = Visibility.Hidden;
                 int numOfBands = Convert.ToInt32(((ComboBoxItem)NumOfBands.SelectedItem).Content);
 
                 int BandNumber = 0;
@@ -62,7 +62,15 @@ namespace ResOhm
 
                     if (child.Visibility == Visibility.Visible)
                     {
-                        Bands[BandNumber] = resColours[Convert.ToString(child.SelectedValue)];        
+                        try {
+                            Bands[BandNumber] = resColours[Convert.ToString(child.SelectedValue)];
+                        }
+                        catch(KeyNotFoundException)
+                        {
+                            ResultBoxStatus.Text = "Please select a colour for each resistor band.";
+                            ResultBoxStatus.Visibility = Visibility.Visible;
+                            return; 
+                        }
                     }
                     BandNumber++;
                 }
@@ -75,7 +83,7 @@ namespace ResOhm
             }
             else
             {
-                ResultBoxError.Visibility = Visibility.Visible;
+                ResultBoxStatus.Visibility = Visibility.Visible;
                 ResultBox.Visibility = Visibility.Hidden;
             }
 
@@ -85,9 +93,14 @@ namespace ResOhm
 
         private void NumOfBands_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ResultBoxError.Visibility = Visibility.Hidden;
+            string numOfBands = null;
+
+            ResultBoxStatus.Visibility = Visibility.Hidden;
             ResultBox.Visibility = Visibility.Visible;
-            string numOfBands = ((ComboBoxItem)NumOfBands.SelectedItem).Content.ToString();
+            if (NumOfBands.SelectedItem != null)
+            {
+                numOfBands = ((ComboBoxItem)NumOfBands.SelectedItem).Content.ToString();
+            }
 
             switch (numOfBands)
             {
@@ -127,6 +140,22 @@ namespace ResOhm
        
         }
 
+        // Clear all selections and band colours
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
 
+            // Clear user selection of band colours
+            foreach (ComboBox colourSelect in ResistorBands.Children)
+            {
+                colourSelect.SelectedItem = null;
+                
+            }
+
+            // Clear number of bands for resistor selection
+            NumOfBands.SelectedItem = null;
+            ResultBoxStatus.Text = null;
+            ResultBoxStatus.Visibility = Visibility.Visible;
+            ResultBox.Visibility = Visibility.Hidden;
+        }
     }
 }

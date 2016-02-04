@@ -12,12 +12,13 @@
     <Grid Margin="-6,0,5.2,-20.2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="17*"/>
-            <ColumnDefinition Width="571*"/>
+            <ColumnDefinition Width="550*"/>
+            <ColumnDefinition Width="19*"/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="7.4,15,16,261.4"  Orientation="Vertical" Grid.Column="1">
+        <StackPanel Margin="7.2,15,15.6,261.6"  Orientation="Vertical" Grid.Column="1" Grid.ColumnSpan="2">
             <TextBox BorderThickness="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Text="Select the number of resistor bands:" Margin="12,0,-0.2,0" Height="16"/>
             <ComboBox x:Name ="NumOfBands" RenderTransformOrigin="0.5,0.5" Margin="12,0,1.2,0" Height="19" SelectionChanged="NumOfBands_SelectionChanged" >
                 <ComboBox.Resources>
@@ -29,20 +30,20 @@
                 <ComboBoxItem Content="5"/>
                 <ComboBoxItem Content="6"/>
             </ComboBox>
-            <Canvas Height="91" Margin="12,0,10.6,0">
-                <TextBox Background="Cornsilk"  IsReadOnly="True" Canvas.Left="142" Canvas.Top="22" Width="211" Height="44"></TextBox>
+            <Canvas x:Name="BandDisplay" Height="91" Margin="12,0,10.6,0">
+                <Rectangle Fill="Beige"  Stroke="Black"  Canvas.Left="142" Canvas.Top="22" Width="211" Height="44"></Rectangle>
                 <Rectangle Fill="Silver" Stroke="Silver" Canvas.Left="85" Canvas.Top="42" Height="3" Width="57"/>
                 <Rectangle Fill="Silver" Stroke="Silver" Canvas.Left="354" Canvas.Top="42" Height="3" Width="56"/>
-                <Rectangle x:Name="vBand1" Fill="{Binding ElementName = Band1, Path = SelectedValue}" Stroke="Silver" Canvas.Left="160" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand2" Fill="{Binding ElementName = Band2, Path = SelectedValue}" Stroke="Silver" Canvas.Left="178" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand3" Fill="{Binding ElementName = Band3, Path = SelectedValue}" Stroke="Silver" Canvas.Left="196" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand4" Fill="{Binding ElementName = Band4, Path = SelectedValue}" Stroke="Silver" Canvas.Left="228" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand5" Fill="{Binding ElementName = Band5, Path = SelectedValue}" Stroke="Silver" Canvas.Left="294" Canvas.Top="22" Height="44" Width="13"/>
-                <Rectangle x:Name="vBand6" Fill="{Binding ElementName = Band6, Path = SelectedValue}" Stroke="Silver" Canvas.Left="322" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand1" Fill="{Binding ElementName = Band1, Path = SelectedValue}" Stroke="Black"  Canvas.Left="160" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand2" Fill="{Binding ElementName = Band2, Path = SelectedValue}" Stroke="Black" Canvas.Left="178" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand3" Fill="{Binding ElementName = Band3, Path = SelectedValue}" Stroke="Black" Canvas.Left="196" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand4" Fill="{Binding ElementName = Band4, Path = SelectedValue}" Stroke="Black" Canvas.Left="234" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand5" Fill="{Binding ElementName = Band5, Path = SelectedValue}" Stroke="Black" Canvas.Left="294" Canvas.Top="22" Height="44" Width="13"/>
+                <Rectangle x:Name="vBand6" Fill="{Binding ElementName = Band6, Path = SelectedValue}" Stroke="Black" Canvas.Left="322" Canvas.Top="22" Height="44" Width="13"/>
             </Canvas>
         </StackPanel>
 
-        <Grid Margin="10,108,7.8,260.8" Grid.ColumnSpan="2">
+        <Grid Margin="10,108,7.6,260.6" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="259*"/>
                 <ColumnDefinition Width="309*"/>
@@ -81,10 +82,11 @@
             </WrapPanel>
             <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="28,62,9.8,9.6" Grid.ColumnSpan="2">Please indicate the colour of the bands from left to right</TextBox>
         </Grid>
-        <Button x:Name="ConvertButton" Content="Decode" Background="Linen"  HorizontalAlignment="Left" Margin="212.2,396,0,0"  FontWeight="DemiBold"  FontFamily="Copperplate Gothic" BorderBrush="Tomato"  BorderThickness="2.5" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.937,3.573" Height="34" Click="ConvertButton_Click" Grid.Column="1" />
-        <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="24.2,253,-1,208.6" Text="Resistor values:" Grid.Column="1" Grid.ColumnSpan="4"/>
-        <TextBox x:Name="ResultBox" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="{Binding Path=ResistorValues, Mode=OneWay}" FontFamily="Copperplate Gothic Light" Margin="24.2,279,15.6,109.6" Grid.Column="1"/>
-        <TextBox x:Name="ResultBoxError" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="Please first select the number of bands." FontFamily="Copperplate Gothic Light" Margin="24,279,15,109.2" Grid.Column="1" />
+        <Button x:Name="ConvertButton" Content="Decode" Background="Linen"  HorizontalAlignment="Left" Margin="136.2,400,0,0"  FontWeight="DemiBold"  FontFamily="Copperplate Gothic" BorderBrush="SpringGreen"  BorderThickness="2.5" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.937,3.573" Height="34" Click="ConvertButton_Click" Grid.Column="1" />
+        <TextBox BorderThickness ="0" Background="Bisque" FontWeight="DemiBold" FontFamily="Copperplate Gothic Light" Margin="24.2,253,-1,208.6" Text="Resistor values:" Grid.Column="1" Grid.ColumnSpan="5"/>
+        <TextBox x:Name="ResultBox" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="{Binding Path=ResistorValues, Mode=OneWay}" FontFamily="Copperplate Gothic Light" Margin="24.2,279,15.6,109.6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="ResultBoxStatus" Background="SeaShell"  IsReadOnly="True" BorderBrush="Thistle"  BorderThickness="2" FontWeight="DemiBold" Text="Please first select the number of bands." FontFamily="Copperplate Gothic Light" Margin="24.2,279,14.6,108.6" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Button x:Name="ResetButton" Content="Reset"  Background="Linen"  HorizontalAlignment="Left" Margin="301.2,400,0,0"  FontWeight="DemiBold"  FontFamily="Copperplate Gothic" BorderBrush="Tomato"  BorderThickness="2.5" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.937,3.573" Height="34" Grid.Column="1" Click="ResetButton_Click" />
 
     </Grid>
 </Window>
